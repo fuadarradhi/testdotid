@@ -15,8 +15,8 @@ class _DotHomeState extends State<DotHome> {
   NumberFormat numberFormat = NumberFormat.decimalPattern('id');
   HomeController homeController = HomeController();
   Map<String, dynamic> data = {
-    "sum_today": 0,
-    "sum_month": 0,
+    "sum_today": 0.0,
+    "sum_month": 0.0,
     "cat": [],
     "today": [],
     "yesterday": [],
@@ -25,7 +25,9 @@ class _DotHomeState extends State<DotHome> {
   @override
   void initState() {
     super.initState();
-    reload();
+    Future.delayed(Duration(milliseconds: 500)).then((value) {
+      reload();
+    });
   }
 
   void reload() {
@@ -101,7 +103,7 @@ class _DotHomeState extends State<DotHome> {
                                   height: 10,
                                 ),
                                 Text(
-                                  "Rp. ${numberFormat.format(data['sum_today'])}",
+                                  "Rp. ${numberFormat.format(data['sum_today'] ?? 0)}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
@@ -140,7 +142,7 @@ class _DotHomeState extends State<DotHome> {
                                   height: 10,
                                 ),
                                 Text(
-                                  "Rp. ${numberFormat.format(data['sum_month'])}",
+                                  "Rp. ${numberFormat.format(data['sum_month'] ?? 0)}",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
